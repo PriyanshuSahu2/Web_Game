@@ -14,7 +14,7 @@ public class ScollToDraw : MonoBehaviour
     public bool canStart = false;
     public bool stopNow = false;
     public int numbers;
-    private void Update()
+    private void FixedUpdate()
     {
     if (canStart)
         {
@@ -37,21 +37,21 @@ public class ScollToDraw : MonoBehaviour
             switch (numbers)
             {
                 case 0:
-                    if(Vector2.Distance(images[0].transform.position, middle.transform.position) <= 0.01)
+                    if(Vector2.Distance(images[0].transform.position, middle.transform.position) <= 0.1)
                     {
                         
                         canStart = false;
                     }
                     break;
                 case 1:
-                    if (Vector2.Distance(images[1].transform.position, middle.transform.position) <= 0.01)
+                    if (Vector2.Distance(images[1].transform.position, middle.transform.position) <= 0.1)
                     {
                         
                         canStart = false;
                     }
                     break;
                 case 2:
-                    if (Vector2.Distance(images[2].transform.position, middle.transform.position) <= 0.01)
+                    if (Vector2.Distance(images[2].transform.position, middle.transform.position) <= 0.1)
                     {
                        
                         canStart = false;

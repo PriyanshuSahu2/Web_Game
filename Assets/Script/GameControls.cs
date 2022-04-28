@@ -12,6 +12,7 @@ public class GameControls : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] Animator anim;
     [SerializeField] Button btn;
+    [SerializeField] bool perfectScore = false;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -25,15 +26,32 @@ public class GameControls : MonoBehaviour
     }
     IEnumerator ExecuteAfterTime()
     {
-       foreach(GameObject gameObject in sroll)
-        { 
-            gameObject.GetComponent<ScollToDraw>().canStart = true;
-            gameObject.GetComponent<ScollToDraw>().stopNow = false;
-            gameManager.GetComponent<GameManager>().winnerPnale(false);
-            int temp = Random.Range(0, 7);
-            gameObject.GetComponent<ScollToDraw>().numbers = GetRandomNumber(temp);
-            yield return new WaitForSeconds(.3f);
+        if (perfectScore)
+        {
+            int temp = Random.Range(0, 3);
+            foreach (GameObject gameObject in sroll)
+            {
+                gameObject.GetComponent<ScollToDraw>().canStart = true;
+                gameObject.GetComponent<ScollToDraw>().stopNow = false;
+                gameManager.GetComponent<GameManager>().winnerPnale(false);
+
+                gameObject.GetComponent<ScollToDraw>().numbers = temp;
+                yield return new WaitForSeconds(.3f);
+            }
         }
+        else
+        {
+            foreach (GameObject gameObject in sroll)
+            {
+                gameObject.GetComponent<ScollToDraw>().canStart = true;
+                gameObject.GetComponent<ScollToDraw>().stopNow = false;
+                gameManager.GetComponent<GameManager>().winnerPnale(false);
+                int temp = Random.Range(0, 7);
+                gameObject.GetComponent<ScollToDraw>().numbers = GetRandomNumber(temp);
+                yield return new WaitForSeconds(.3f);
+            }
+        }
+       
 
         yield return new WaitForSeconds(.5f);
         StartCoroutine(StopRunning());
@@ -61,14 +79,18 @@ public class GameControls : MonoBehaviour
     }
     int GetRandomNumber(int temp)
     {
-        if (temp >2)
-        {
-            return 1;
-        }
-        else
-        {
-            return temp;
-        }
+
+       
+            if (temp > 2)
+            {
+                return 1;
+            }
+            else
+            {
+                return temp;
+            }
+        
+
         
     }
 }

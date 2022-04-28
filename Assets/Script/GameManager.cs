@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button audioBtn;
     [SerializeField] Sprite audioON;
     [SerializeField] Sprite audioOFF;
+
+    [SerializeField] Animator[] winningPanelsAnim;
+    [SerializeField] GameObject coin;
+    [SerializeField] GameObject[] Buttons;
     public  void ClosePanel()
     {
         whatsGoingOnPanel.SetActive(false);
@@ -28,13 +32,25 @@ public class GameManager : MonoBehaviour
         if (winner == true)
         {
 
-        int temp = Random.Range(0, 50);
-            winnerPanelImage.color = platazees[temp].texture.GetPixel(10, 10);
-            Debug.Log($"{temp  }    " +platazees[temp].texture.GetPixel(10, 10));
-            winnerImage.sprite = platazees[temp];
+            coin.SetActive(true);
+            coin.GetComponent<Animator>().enabled = true;
+            foreach (GameObject gb in Buttons)
+            {
+                gb.SetActive(false);
+            }
+
+            foreach(Animator anim in winningPanelsAnim)
+            {
+                anim.SetBool("Start", true);
+                
+            }
+            
+
+            StartCoroutine(Anim());
+
         }
        
-        winnerPanel.SetActive(winner);
+        
     }
     public void onEnter()
     {
@@ -53,6 +69,23 @@ public class GameManager : MonoBehaviour
         
 
     }
+    public void onImageClick()
+    {
+        winnerPanel.SetActive(false);
+        coin.SetActive(false);
+        coin.GetComponent<Animator>().enabled = false;
+        winnerPanel.GetComponent<Animator>().enabled = true;
+        foreach (GameObject gb in Buttons)
+        {
+            gb.SetActive(true);
+        }
+
+        foreach (Animator anim in winningPanelsAnim)
+        {
+            anim.SetBool("Start", false);
+
+        }
+    }
     public void MusicOnOff()
     {
         if (audio.mute)
@@ -65,5 +98,17 @@ public class GameManager : MonoBehaviour
             audioBtn.image.sprite = audioON;
             audio.mute = true;
         }
+    }
+    IEnumerator Anim()
+    {
+        yield return new WaitForSeconds(2f);
+        coin.GetComponent<Animator>().SetBool("Start", false);
+        int temp = Random.Range(0, 50);
+        winnerPanelImage.color = platazees[temp].texture.GetPixel(10, 10);
+        Debug.Log($"{temp  }    " + platazees[temp].texture.GetPixel(10, 10));
+        
+        winnerImage.sprite = platazees[temp];
+        winnerPanel.SetActive(true);
+        
     }
 }
