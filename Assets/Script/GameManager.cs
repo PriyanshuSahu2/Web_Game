@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button audioBtn;
     [SerializeField] Sprite audioON;
     [SerializeField] Sprite audioOFF;
-
     [SerializeField] Animator[] winningPanelsAnim;
     [SerializeField] GameObject coin;
     [SerializeField] GameObject[] Buttons;
@@ -52,6 +51,14 @@ public class GameManager : MonoBehaviour
        
         
     }
+    public void spin()
+    {
+        coin.SetActive(false);
+        foreach (Animator anim in winningPanelsAnim)
+        {
+            anim.SetBool("End", false);
+        }
+    }
     public void onEnter()
     {
         if (!winnerPanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("fadein"))
@@ -72,8 +79,8 @@ public class GameManager : MonoBehaviour
     public void onImageClick()
     {
         winnerPanel.SetActive(false);
-        coin.SetActive(false);
-        coin.GetComponent<Animator>().enabled = false;
+        coin.SetActive(true);
+
         winnerPanel.GetComponent<Animator>().enabled = true;
         foreach (GameObject gb in Buttons)
         {
@@ -84,6 +91,10 @@ public class GameManager : MonoBehaviour
         {
             anim.SetBool("Start", false);
 
+        }
+        foreach (Animator anim in winningPanelsAnim)
+        {
+            anim.SetBool("End", true);
         }
     }
     public void MusicOnOff()
@@ -101,14 +112,21 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Anim()
     {
-        yield return new WaitForSeconds(2f);
-        coin.GetComponent<Animator>().SetBool("Start", false);
+        yield return new WaitForSeconds(1.2f);
+        coin.GetComponent<SpriteRenderer>().sortingOrder = 4;
         int temp = Random.Range(0, 50);
         winnerPanelImage.color = platazees[temp].texture.GetPixel(10, 10);
         Debug.Log($"{temp  }    " + platazees[temp].texture.GetPixel(10, 10));
         
+
         winnerImage.sprite = platazees[temp];
         winnerPanel.SetActive(true);
-        
+
+        yield return new WaitForSeconds(2f);
+
+        coin.GetComponent<Animator>().SetBool("Start", false);
+        winnerPanel.GetComponent<Animator>().SetBool("onhover", true);
+        coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
+
     }
 }
