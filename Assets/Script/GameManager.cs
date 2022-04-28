@@ -38,13 +38,20 @@ public class GameManager : MonoBehaviour
     }
     public void onEnter()
     {
-        winnerPanel.GetComponent<Animator>().enabled = false;
-        winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", true);
+        if (!winnerPanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("fadein"))
+        {
+            winnerPanel.GetComponent<Animator>().enabled = false;
+            winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", true);
+        }
     }
     public void onExit()
     {
-        winnerPanel.GetComponent<Animator>().enabled = true;
-        winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", false);
+       
+            Debug.Log("Sll");
+            winnerPanel.GetComponent<Animator>().enabled = true;
+            winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", false);
+        
+
     }
     public void MusicOnOff()
     {
