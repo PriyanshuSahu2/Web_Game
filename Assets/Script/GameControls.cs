@@ -65,7 +65,7 @@ public class GameControls : MonoBehaviour
             gameObject.GetComponent<ScollToDraw>().stopNow = true;
             yield return new WaitForSeconds(.3f);
         }
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.4f);
         if ((sroll[0].GetComponent<ScollToDraw>().numbers == sroll[1].GetComponent<ScollToDraw>().numbers)&& (sroll[1].GetComponent<ScollToDraw>().numbers == sroll[2].GetComponent<ScollToDraw>().numbers)){
             audioSource.PlayOneShot(audioClips[1]);
             gameManager.GetComponent<GameManager>().winnerPnale(true);
@@ -74,6 +74,7 @@ public class GameControls : MonoBehaviour
         {
             audioSource.PlayOneShot(audioClips[2]);
         }
+        
         btn.interactable = true;
 
     }

@@ -27,7 +27,6 @@ public class ScollToDraw : MonoBehaviour
                 {
 
                     gameObject.transform.position = new Vector2(secono.transform.position.x, secono.transform.position.y);
-
                 }
             }
         }

@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         winnerPanel.SetActive(false);
         coin.SetActive(true);
-
+        coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
         winnerPanel.GetComponent<Animator>().enabled = true;
         foreach (GameObject gb in Buttons)
         {
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Anim()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
         coin.GetComponent<SpriteRenderer>().sortingOrder = 4;
         int temp = Random.Range(0, 50);
         winnerPanelImage.color = platazees[temp].texture.GetPixel(10, 10);
@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         coin.GetComponent<Animator>().SetBool("Start", false);
         winnerPanel.GetComponent<Animator>().SetBool("onhover", true);
+        coin.SetActive(false);
         coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
     }
