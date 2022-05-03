@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator[] winningPanelsAnim;
     [SerializeField] GameObject coin;
     [SerializeField] GameObject[] Buttons;
+    [SerializeField] GameObject spinAgainBtn;
     public  void ClosePanel()
     {
         whatsGoingOnPanel.SetActive(false);
@@ -48,8 +49,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Anim());
 
         }
-       
-        
     }
     public void spin()
     {
@@ -76,8 +75,9 @@ public class GameManager : MonoBehaviour
         
 
     }
-    public void onImageClick()
+    public void SpinAgainClick()
     {
+        spinAgainBtn.SetActive(false);
         winnerPanel.SetActive(false);
         coin.SetActive(true);
         coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -112,8 +112,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Anim()
     {
-        yield return new WaitForSeconds(1f);
-        coin.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        yield return new WaitForSeconds(0.9f);
+        coin.GetComponent<SpriteRenderer>().sortingOrder = 5;
         int temp = Random.Range(0, 50);
         winnerPanelImage.color = platazees[temp].texture.GetPixel(10, 10);
         Debug.Log($"{temp  }    " + platazees[temp].texture.GetPixel(10, 10));
@@ -121,13 +121,14 @@ public class GameManager : MonoBehaviour
 
         winnerImage.sprite = platazees[temp];
         winnerPanel.SetActive(true);
-
+        spinAgainBtn.SetActive(true);
         yield return new WaitForSeconds(2f);
 
         coin.GetComponent<Animator>().SetBool("Start", false);
         winnerPanel.GetComponent<Animator>().SetBool("onhover", true);
         coin.SetActive(false);
         coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        
 
     }
 }
