@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject whatsGoingOnPanel;
@@ -18,6 +18,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject coin;
     [SerializeField] GameObject[] Buttons;
     [SerializeField] GameObject spinAgainBtn;
+    private void Start()
+    {
+        if (audio.mute)
+        {
+            audioBtn.image.sprite = audioON;
+        }
+        else
+        {
+            audioBtn.image.sprite = audioOFF;
+            
+        }
+    }
     public  void ClosePanel()
     {
         whatsGoingOnPanel.SetActive(false);
@@ -77,10 +89,12 @@ public class GameManager : MonoBehaviour
     }
     public void SpinAgainClick()
     {
+       
         spinAgainBtn.SetActive(false);
         winnerPanel.SetActive(false);
         coin.SetActive(true);
         coin.GetComponent<SpriteRenderer>().sortingOrder = 2;
+       
         winnerPanel.GetComponent<Animator>().enabled = true;
         foreach (GameObject gb in Buttons)
         {
@@ -131,4 +145,13 @@ public class GameManager : MonoBehaviour
         
 
     }
+    public void enter(TMP_Text tmp)
+    {
+        tmp.color = Color.black;
+    }
+    public void exit(TMP_Text tmp)
+    {
+        tmp.color = Color.white;
+    }
+
 }
