@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
     {
         if (!winnerPanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("fadein"))
         {
-            winnerPanel.GetComponent<Animator>().enabled = false;
-            winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", true);
+            //winnerPanel.GetComponent<Animator>().enabled = false;
+           // winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
     }
     public void onExit()
@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour
             winnerPanel.GetComponent<Animator>().enabled = true;
             winnerImage.gameObject.GetComponent<Animator>().SetBool("hover", false);
         
-
     }
     public void SpinAgainClick()
     {
