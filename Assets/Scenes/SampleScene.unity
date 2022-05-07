@@ -2078,7 +2078,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    m_DisabledColor: {r: 0.509434, g: 0.507031, b: 0.507031, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2093,7 +2093,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 394080780}
+  m_TargetGraphic: {fileID: 839123629}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2200,8 +2200,9 @@ MonoBehaviour:
   audioSource: {fileID: 901816872}
   gameManager: {fileID: 232604900}
   anim: {fileID: 1746825714}
-  btn: {fileID: 394080779}
+  btn: {fileID: 839123628}
   perfectScore: 1
+  tmpText: {fileID: 714164536}
 --- !u!4 &901816871
 Transform:
   m_ObjectHideFlags: 0
@@ -4906,7 +4907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -1.8, y: 48.43}
+  m_AnchoredPosition: {x: -1.8, y: 48.429993}
   m_SizeDelta: {x: 168.8194, y: 44.375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895690530

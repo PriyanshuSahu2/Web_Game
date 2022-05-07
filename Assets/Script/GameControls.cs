@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameControls : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class GameControls : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] Button btn;
     [SerializeField] bool perfectScore = false;
+    [SerializeField] TMP_Text tmpText;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
     public void onClick()
     {
+        tmpText.color = Color.gray;
         btn.interactable = false;
         anim.SetTrigger("Use");
         audioSource.PlayOneShot(audioClips[0]);
@@ -76,6 +79,7 @@ public class GameControls : MonoBehaviour
         }
         
         btn.interactable = true;
+        tmpText.color = Color.white;
 
     }
     int GetRandomNumber(int temp)

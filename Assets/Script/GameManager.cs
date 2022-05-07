@@ -146,11 +146,19 @@ public class GameManager : MonoBehaviour
     }
     public void enter(TMP_Text tmp)
     {
-        tmp.color = Color.black;
+        if (Buttons[0].GetComponent<Button>().interactable)
+        {
+            tmp.color = Color.black;
+        }
+        
     }
     public void exit(TMP_Text tmp)
     {
-        tmp.color = Color.white;
+
+        if (Buttons[0].GetComponent<Button>().interactable)
+        {
+            tmp.color = Color.white;
+        }
     }
 
 }
